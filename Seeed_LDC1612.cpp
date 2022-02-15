@@ -381,7 +381,7 @@ const char* status_str[] = {"conversion under range error", "conversion over ran
 /** @brief parse sensor statu data.
 
  * */
-s32 LDC1612::sensor_status_parse(u16 value) {
+void LDC1612::sensor_status_parse(u16 value) {
     u16 section = 0;
     section = value >> 14;
     switch (section) {
