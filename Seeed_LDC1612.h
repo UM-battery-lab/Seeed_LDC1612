@@ -132,6 +132,10 @@ typedef enum {
 class LDC1612_IIC_OPRTS {
   public:
     void IIC_begin() {
+      
+       // Wire.setSDA(0);
+       // Wire.setSCL(1);
+      
         Wire.begin();
     }
     s32 IIC_write_byte(u8 reg, u8 byte);

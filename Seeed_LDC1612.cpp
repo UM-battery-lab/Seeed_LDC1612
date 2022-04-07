@@ -69,11 +69,18 @@ s32 LDC1612::init() {
 
 s32 LDC1612::single_channel_config(u8 channel) {
     /*Set coil inductor parameter first.*/
+        /*28 TURNS*/
+    set_Rp(CHANNEL_0, 28.02);
+    set_L(CHANNEL_0, 78.3);
+    set_C(CHANNEL_0, 270);
+    set_Q_factor(CHANNEL_0, 52.52);
+
+    
     /*20 TURNS*/
-    set_Rp(CHANNEL_0, 15.727);
-    set_L(CHANNEL_0, 18.147);
-    set_C(CHANNEL_0, 100);
-    set_Q_factor(CHANNEL_0, 35.97);
+ //   set_Rp(CHANNEL_0, 15.727);
+ //   set_L(CHANNEL_0, 18.147);
+ //   set_C(CHANNEL_0, 100);
+ //   set_Q_factor(CHANNEL_0, 35.97);
 
     // /*25 TURNS*/
     // set_Rp(CHANNEL_0,24.9);
@@ -102,15 +109,15 @@ s32 LDC1612::single_channel_config(u8 channel) {
     set_LC_stabilize_time(CHANNEL_0);
 
     /*Set conversion interval time*/
-    set_conversion_time(CHANNEL_0, 0x0546);
+    set_conversion_time(CHANNEL_0, 0xE77B);
 
     /*Set driver current!*/
-    set_driver_current(CHANNEL_0, 0xa000);
+    set_driver_current(CHANNEL_0, 0x4000);
 
     /*single conversion*/
     set_mux_config(0x20c);
     /*start channel 0*/
-    u16 config = 0x1601;
+    u16 config = 0x1600;
     select_channel_to_convert(CHANNEL_0, &config);
     set_sensor_config(config);
     return 0;
@@ -118,17 +125,17 @@ s32 LDC1612::single_channel_config(u8 channel) {
 
 s32 LDC1612::LDC1612_mutiple_channel_config() {
     /*Set coil inductor parameter first.*/
-    /*20 TURNS*/
-    set_Rp(CHANNEL_0, 15.727);
-    set_L(CHANNEL_0, 18.147);
-    set_C(CHANNEL_0, 100);
-    set_Q_factor(CHANNEL_0, 35.97);
+        /*28 TURNS*/
+    set_Rp(CHANNEL_0, 28.02);
+    set_L(CHANNEL_0, 78.3);
+    set_C(CHANNEL_0, 270);
+    set_Q_factor(CHANNEL_0, 52.52);
 
-    /*25 TURNS*/
-    set_Rp(CHANNEL_1, 15.727);
-    set_L(CHANNEL_1, 18.147);
-    set_C(CHANNEL_1, 100);
-    set_Q_factor(CHANNEL_1, 35.97);
+            /*28 TURNS*/
+    set_Rp(CHANNEL_1, 28.02);
+    set_L(CHANNEL_1, 78.3);
+    set_C(CHANNEL_1, 270);
+    set_Q_factor(CHANNEL_1, 52.52);
 
     // /*36 TURNS single layer*/
     // set_Rp(CHANNEL_0,28.18);
@@ -153,19 +160,19 @@ s32 LDC1612::LDC1612_mutiple_channel_config() {
     set_LC_stabilize_time(CHANNEL_1);
 
     /*Set conversion interval time*/
-    set_conversion_time(CHANNEL_0, 0x0546);
-    set_conversion_time(CHANNEL_1, 0x0546);
+    set_conversion_time(CHANNEL_0, 0xE77B);
+    set_conversion_time(CHANNEL_1, 0xE77B);
 
     /*Set driver current!*/
-    set_driver_current(CHANNEL_0, 0xa000);
-    set_driver_current(CHANNEL_1, 0xa000);
+    set_driver_current(CHANNEL_0, 0x4000);
+    set_driver_current(CHANNEL_1, 0x4000);
 
 
     /*mutiple conversion*/
     set_mux_config(0x820c);
     //set_mux_config(0x20c);
     /*start channel 0*/
-    set_sensor_config(0x1601);
+    set_sensor_config(0x1600);
     //u16 config=0x1601;
     //select_channel_to_convert(0,&config);
     return 0;
